@@ -1,8 +1,8 @@
 <?php
-echo 'Ejecutando Condicional'
-?>
+echo 'Ejecutando Condicional';
 
-<?php
+
+/*ejercicio 1.1*/
 $Articulos= "20";
 
 if ($Articulos <12) {
@@ -11,9 +11,14 @@ if ($Articulos <12) {
     echo "Caja Normal";
 }
 
-/*ejercicio 2*/
+/*ejercicio 1.2*/
 
-$Edad = "100";
+$Edad = "20";
+if ($Edad <18) {
+    echo "Eres menor de edad,No puedes votar";
+} else {
+    echo "Eres mayor de edad,Si puedes votar";
+}
 
 
 

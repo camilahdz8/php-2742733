@@ -24,6 +24,7 @@ foreach ($animales as $x) {
        echo "$x <br>";
     }
 
+    
 
 ?>
 

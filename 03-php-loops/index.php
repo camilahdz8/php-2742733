@@ -26,3 +26,4 @@ foreach ($animales as $x) {
 
 
 ?>
+

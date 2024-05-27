@@ -14,10 +14,11 @@
 <body>
 
 
-    <?php if($_SESSION) : ?>
+    <?php if( isset($_SESSION['userRegister']) ) : ?>
+
 
     
-    <h1>Bienvenido <?php echo $_SESSION['Nombre']; ?> A tu pais <?php  echo $_SESSION['Pais']; ?></h1>
+    <h1>Bienvenido <?php echo $_SESSION['userRegister']; ?></h1>
     <a href="./cerrar.php">Cerrar Sesion</a>
     <a href="./index.php">Home</a>
 

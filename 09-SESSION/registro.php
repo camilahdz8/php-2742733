@@ -1,50 +1,40 @@
 <?php session_start();
 
-if($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $usuario = $_POST['Username'];
-    $password = $_POST['Password'];
-    $email = $_POST['Email'];
-
-    if(empty($usuario) or empty($password)) {
-        echo 'Rellene completo el formulario';
-    }else {
-        //echo $usuario . '_' . $password;
-        $_SESSION['userRegister'] = $usuario;
-        $_SESSION['passRegister'] = $password;
-        $_SESSION['emailRegister'] = $email;
-
-        try{
-            $conexion = new PDO("mysql: host=localhost; dbname=focaapp",'root','');
-            echo "Conexion OK";
-        }catch (PDOException $e) {
-            echo "Error:". $e-> getMessage ();
-        }
-
-        
-        
-        //vamos a preparar una sentencia SQL y la guardamos en una variable
-        $statement = $conexion->prepare ("INSERT INTO `usersapp` (`ID`,`Username`, `Email`, `Password`) VALUES (NULL, :usuario, :pass, :email)");
-        
-        
-        //ejecutar el statement
-        $statement->execute(array(":usuario"=>$usuario, ":email"=>$email, ":pass"=>$password));
-        
-        //fetch() regresa solo un resultado  fetchAll() regresa todos los resultados
-        $statement = $statement->fetchAll();
-
-       
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $usuario = $_POST['user'];
+    $password = $_POST['password'];
+    $email = $_POST['email'];
 
 
-        //echo '-variables de sesion guardadas 👍';
-        //header('Location: index.php');
-    }
+//Para verificar que se envíen todos los datos
+if(empty($usuario) or empty($password)){
+    echo 'Rellene completo el formulario';
+}else{
+    //echo $usuario . ' - ' . $password;
+    /* $_SESSION['userRegister'] = $usuario;
+    $_SESSION['passRegister'] = $password;
+    $_SESSION['emailRegister'] = $email; */
+    //echo '- Variables de sesión guardadas';
+    //header('Location: index.php);
 
+    try{
+
+        $conexion = new PDO("mysql: host=localhost; dbname=focaapp", 'root', ''); 
+        echo "Conexion OK". "<br>";
     
+    } catch (PDOException $e) {
+        echo "Error:" . $e-> getMessage() . "<br>";
+    }
+    
+    $statement = $conexion -> prepare("INSERT INTO `usersapp` (`ID` ,`Username`, `Password`,`Email`) VALUES (NULL, :usuario, :pass, :email)");
+    
+    
+    $statement -> execute(array( ":usuario"=>$usuario, ":pass"=>$password, ":email"=>$email));
+}
 }
 
-
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,30 +44,24 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>Document</title>
 </head>
 <body>
-
+    
 <h1>Registrate</h1>
 
 <form action="registro.php" method="POST">
-    <label for="Username">Username</label>
-    <input id="Username" type="text" placeholder="Username.." name="Username">
-    <label for="Email">email</label>
-    <input id="Email" type="text" placeholder="Email.." name="Email">
-    <label for="Password" required>Password</label>
-    <input id="Password" type="password" placeholder="Password.." name="Password">
-
+    <label for="user">User</label>
+    <input type="text" placeholder="User" name="user">
+    <label for="email">Email</label>
+    <input type="email" placeholder="email" name="email">
+    <label for="password">Password</label>
+    <input type="password" placeholder="Password" name="password">
     <button type="submit">Registrarse</button>
 </form>
 
-<?php
- if( isset($_SESSION['userRegister']) ): ?>
-<p>Datos registrados, ya puedes iniciar sesion</p>
-<p> <?php echo $_SESSION['userRegister'] . '-'.  $_SESSION['passRegister']; ?></p>
-
-
-<a href="index.php">Iniciar Sesion</a>
-<?php endif; ?>
-
-
+<?php if(isset($_SESSION ['userRegister']) ) : ?>
+<p>Datos registrados, ya puede iniciar sesión</p>
+<p><?php echo $_SESSION['userRegister'] . ' - ' . $_SESSION ['passRegister'] . ' - ' . $_SESSION ['emailRegister'] ; ?> </p>
+<a href="index.php">Iniciar sesión</a>
+<?php endif  ?>
 
 </body>
 </html>

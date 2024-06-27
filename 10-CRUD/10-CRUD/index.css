@@ -1,0 +1,17 @@
+body{
+    background-image: url(./img/fondo.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.no-link {
+    text-decoration: none;
+}
+
+.boton{
+    text-decoration: none;
+    padding: 10px;
+    color: white;
+    background-color: rgb(255, 104, 129);
+    border: none;
+}

@@ -1,0 +1,45 @@
+body{
+    background-image: url(./img/fondo\ rosadito2.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.boton{
+    background-color: rgb(255, 255, 255);
+    border: .5px solid black;
+    padding: 10px;
+    color: black;
+}
+
+
+.boton1{
+    color:  rgb(249, 130, 150);
+    font-size: 25px;
+}
+
+.todo{
+    display: flex;
+    justify-content: center;
+    margin-top: 7rem;
+}
+
+.contenedor{
+    background-color: white;
+    width: 20rem;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px 1px rgba(0, 0, 0, 0.145);
+    padding: 1rem;
+    font-size: 20px;
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.barra {
+    border-style: none;
+    background-color: rgba(235, 235, 235, 0.457);
+    padding: 8px;
+    width: 300px;
+    margin-bottom: 10px;
+}
